@@ -20,6 +20,6 @@ public class UserAuthService implements UserDetailsService {
         if(user==null){
             throw new UsernameNotFoundException("User not found");
         }
-        return new com.gucarsoft.ws.config.UserDetails(user);
+        return user;
     }
 }
