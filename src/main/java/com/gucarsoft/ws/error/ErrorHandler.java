@@ -31,12 +31,14 @@ public class ErrorHandler implements ErrorController {
 
         Map<String, String> validationError = new HashMap<>();
 
-        List<FieldError> fieldErrors = (List<FieldError>) attributes.get("errors");
+        if (attributes.containsKey("errors")) {
+            List<FieldError> fieldErrors = (List<FieldError>) attributes.get("errors");
 
-        for (FieldError fieldError : fieldErrors) {
-            validationError.put(fieldError.getField(), fieldError.getDefaultMessage());
+            for (FieldError fieldError : fieldErrors) {
+                validationError.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            apiError.setValidationErrors(validationError);
         }
-        apiError.setValidationErrors(validationError);
 
         return apiError;
     }
