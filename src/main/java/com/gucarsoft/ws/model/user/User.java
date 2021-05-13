@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class User extends BaseEntity implements Serializable {
 
     @UniqueUsername
-    @NotNull
+    @NotNull(message = "{app.validation.username.NotNull.message}")
     @Size(min = 4,max = 25)
     private String username;
 
