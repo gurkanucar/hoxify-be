@@ -8,10 +8,11 @@ import com.gucarsoft.ws.utils.Views;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,9 +40,10 @@ public class UserController {
     }
 
     @GetMapping
-    @JsonView(Views.Base.class)
-    public List<User> loginUser() {
-        return userService.getAllUsers();
+    //@JsonView(Views.Base.class)
+    public Page<User> userList(Pageable pageable ) {
+        //http://localhost:8080/api/user?page=0&size=2
+        return userService.getAllUsers(pageable);
     }
 
 }

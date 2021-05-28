@@ -3,11 +3,14 @@ package com.gucarsoft.ws.service;
 import com.gucarsoft.ws.model.user.User;
 import com.gucarsoft.ws.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,9 +42,12 @@ public class UserServiceImpl implements UserService {
         return userRepo.findAllByUsername(username);
     }
 
+
+
     @Override
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
+    public Page<User> getAllUsers(Pageable pageable) {
+        Pageable _pageable = PageRequest.of(0,4);
+        return userRepo.findAll(pageable);
     }
 
 
