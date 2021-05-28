@@ -2,7 +2,7 @@ package com.gucarsoft.ws.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.gucarsoft.ws.model.user.User;
-import com.gucarsoft.ws.service.user.UserProjection;
+import com.gucarsoft.ws.model.user.UserDTO;
 import com.gucarsoft.ws.service.user.UserService;
 import com.gucarsoft.ws.utils.CurrentUser;
 import com.gucarsoft.ws.utils.Views;
@@ -39,18 +39,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-   // @GetMapping
-    //@JsonView(Views.Base.class)
-   // public Page<User> userList(Pageable pageable ) {
-        //http://localhost:8080/api/user?page=0&size=2
-       // return userService.getAllUsers(pageable);
-   // }
+/*    @GetMapping
+    @JsonView(Views.Base.class)
+    public Page<User> userList(Pageable pageable ) {
+        http://localhost:8080/api/user?page=0&size=2
+        return userService.getAllUsers(pageable);
+    }
 
 
     @GetMapping
     public Page<UserProjection> userListWithProjection(Pageable pageable ) {
         return userService.getAllUsersWithProjection(pageable);
     }
+*/
+
+    @GetMapping
+    public Page<UserDTO> userListWithDTOn(Pageable pageable ) {
+        //method reference java8
+        return userService.getAllUsers(pageable).map(UserDTO::new);
+    }
+
 
 
 }

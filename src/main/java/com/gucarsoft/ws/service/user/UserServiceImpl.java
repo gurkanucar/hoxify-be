@@ -1,10 +1,10 @@
 package com.gucarsoft.ws.service.user;
 
 import com.gucarsoft.ws.model.user.User;
+import com.gucarsoft.ws.model.user.UserDTO;
 import com.gucarsoft.ws.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
     public Page<UserProjection> getAllUsersWithProjection(Pageable pageable) {
         return userRepo.getAllUsersProjection(pageable);
     }
+
 
 
 }
