@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -35,6 +36,12 @@ public class UserController {
     @JsonView(Views.Base.class)
     public ResponseEntity<?> loginUser(@CurrentUser User user) {
         return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @GetMapping
+    @JsonView(Views.Base.class)
+    public List<User> loginUser() {
+        return userService.getAllUsers();
     }
 
 }
