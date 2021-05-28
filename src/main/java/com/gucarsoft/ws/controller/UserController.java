@@ -52,9 +52,9 @@ public class UserController {
 */
 
     @GetMapping
-    public Page<UserDTO> userListWithDTOn(Pageable pageable ) {
+    public Page<UserDTO> userListWithDTOn(Pageable pageable , @CurrentUser User user) {
         //method reference java8
-        return userService.getAllUsers(pageable).map(UserDTO::new);
+        return userService.getAllUsers(pageable,user).map(UserDTO::new);
     }
 
 

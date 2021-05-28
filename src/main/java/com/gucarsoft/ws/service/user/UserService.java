@@ -11,6 +11,6 @@ public interface UserService {
     User create(User user);
     boolean checkUserIfExists(String name,String password);
     User getUserByUsername(String username);
-    Page<User> getAllUsers(Pageable pageable);
+    Page<User> getAllUsers(Pageable pageable,User user);
     Page<UserProjection> getAllUsersWithProjection(Pageable pageable);
 }
