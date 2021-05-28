@@ -2,7 +2,8 @@ package com.gucarsoft.ws.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.gucarsoft.ws.model.user.User;
-import com.gucarsoft.ws.service.UserService;
+import com.gucarsoft.ws.service.user.UserProjection;
+import com.gucarsoft.ws.service.user.UserService;
 import com.gucarsoft.ws.utils.CurrentUser;
 import com.gucarsoft.ws.utils.Views;
 import org.slf4j.Logger;
@@ -16,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -39,11 +39,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-    @GetMapping
-    @JsonView(Views.Base.class)
-    public Page<User> userList(Pageable pageable ) {
+   // @GetMapping
+    //@JsonView(Views.Base.class)
+   // public Page<User> userList(Pageable pageable ) {
         //http://localhost:8080/api/user?page=0&size=2
-        return userService.getAllUsers(pageable);
+       // return userService.getAllUsers(pageable);
+   // }
+
+
+    @GetMapping
+    public Page<UserProjection> userListWithProjection(Pageable pageable ) {
+        return userService.getAllUsersWithProjection(pageable);
     }
+
 
 }

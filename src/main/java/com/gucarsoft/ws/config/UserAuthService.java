@@ -1,7 +1,7 @@
 package com.gucarsoft.ws.config;
 
 import com.gucarsoft.ws.model.user.User;
-import com.gucarsoft.ws.service.UserService;
+import com.gucarsoft.ws.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package com.gucarsoft.ws.service;
+package com.gucarsoft.ws.service.user;
 
 import com.gucarsoft.ws.model.user.AuthUser;
 import com.gucarsoft.ws.model.user.User;
@@ -12,5 +12,6 @@ public interface UserService {
     boolean checkUserIfExists(String name,String password);
     User getUserByUsername(String username);
     Page<User> getAllUsers(Pageable pageable);
+    Page<UserProjection> getAllUsersWithProjection(Pageable pageable);
 
 }

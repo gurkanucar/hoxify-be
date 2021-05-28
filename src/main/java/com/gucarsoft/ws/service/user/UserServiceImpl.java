@@ -1,4 +1,4 @@
-package com.gucarsoft.ws.service;
+package com.gucarsoft.ws.service.user;
 
 import com.gucarsoft.ws.model.user.User;
 import com.gucarsoft.ws.repository.UserRepository;
@@ -46,8 +46,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getAllUsers(Pageable pageable) {
-        Pageable _pageable = PageRequest.of(0,4);
+        //Pageable _pageable = PageRequest.of(0,4);
         return userRepo.findAll(pageable);
+    }
+
+    @Override
+    public Page<UserProjection> getAllUsersWithProjection(Pageable pageable) {
+        return userRepo.getAllUsersProjection(pageable);
     }
 
 

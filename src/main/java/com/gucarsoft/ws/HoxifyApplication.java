@@ -1,11 +1,9 @@
 package com.gucarsoft.ws;
 
-import com.gucarsoft.ws.model.user.User;
-import com.gucarsoft.ws.service.UserService;
+import com.gucarsoft.ws.service.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(/*exclude = SecurityAutoConfiguration.class*/)
