@@ -5,7 +5,6 @@ import com.gucarsoft.ws.model.user.User;
 import com.gucarsoft.ws.model.user.UserDTO;
 import com.gucarsoft.ws.service.user.UserService;
 import com.gucarsoft.ws.utils.CurrentUser;
-import com.gucarsoft.ws.utils.Views;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,6 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @JsonView(Views.Base.class)
     public ResponseEntity<?> loginUser(@CurrentUser User user) {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
