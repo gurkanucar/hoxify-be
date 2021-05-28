@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping
-    //@JsonView(Views.Base.class)
+    @JsonView(Views.Base.class)
     public Page<User> userList(Pageable pageable ) {
         //http://localhost:8080/api/user?page=0&size=2
         return userService.getAllUsers(pageable);
