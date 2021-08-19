@@ -32,10 +32,29 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.create(user));
     }
 
+
+    @GetMapping
+    public Page<UserDTO> userListWithDTOn(Pageable pageable, @CurrentUser User user) {
+        //method reference java8
+        return userService.getAllUsers(pageable, user).map(UserDTO::new);
+    }
+
+
+    @GetMapping("/{username}")
+    public UserDTO getUserByID(@PathVariable String username) {
+        return new UserDTO(userService.getUserByUsername(username));
+    }
+
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@CurrentUser User user) {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
+
+
+
+
+
 
 /*    @GetMapping
     @JsonView(Views.Base.class)
@@ -50,13 +69,6 @@ public class UserController {
         return userService.getAllUsersWithProjection(pageable);
     }
 */
-
-    @GetMapping
-    public Page<UserDTO> userListWithDTOn(Pageable pageable , @CurrentUser User user) {
-        //method reference java8
-        return userService.getAllUsers(pageable,user).map(UserDTO::new);
-    }
-
 
 
 }

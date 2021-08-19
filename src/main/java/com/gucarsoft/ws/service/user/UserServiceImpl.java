@@ -1,5 +1,6 @@
 package com.gucarsoft.ws.service.user;
 
+import com.gucarsoft.ws.error.NotFoundException;
 import com.gucarsoft.ws.model.user.User;
 import com.gucarsoft.ws.model.user.UserDTO;
 import com.gucarsoft.ws.repository.UserRepository;
@@ -9,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 
 @Service
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkUserIfExists(String name, String password) {
         User user = userRepo.findAllByUsername(name);
-        if(user!=null){
+        if (user != null) {
             return passwordEncoder.matches(password, user.getPassword());
         }
         return false;
@@ -39,15 +39,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        return userRepo.findAllByUsername(username);
+        return userRepo.findByUsername(username).orElseThrow(NotFoundException::new);
     }
 
 
-
     @Override
-    public Page<User> getAllUsers(Pageable pageable,User user) {
-        if(user!=null){
-            return userRepo.findByUsernameNot(user.getUsername(),pageable);
+    public Page<User> getAllUsers(Pageable pageable, User user) {
+        if (user != null) {
+            return userRepo.findByUsernameNot(user.getUsername(), pageable);
         }
         //Pageable _pageable = PageRequest.of(0,4);
         return userRepo.findAll(pageable);
@@ -57,7 +56,6 @@ public class UserServiceImpl implements UserService {
     public Page<UserProjection> getAllUsersWithProjection(Pageable pageable) {
         return userRepo.getAllUsersProjection(pageable);
     }
-
 
 
 }
